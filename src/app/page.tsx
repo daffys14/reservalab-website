@@ -100,19 +100,19 @@ const testimonials = [
     quote:
       "I finally have a system that matches how I actually work. The Tap to Pay feature alone saved me from buying a card reader.",
     author: "Amara J.",
-    salon: "Studio Amara, London",
+    salon: "Studio Amara, Atlanta",
   },
   {
     quote:
       "Switching from a paper book to reservalab took one afternoon. My clients noticed the difference immediately.",
     author: "Sophia R.",
-    salon: "Sophia Hair & Beauty, Manchester",
+    salon: "Sophia Hair & Beauty, Houston",
   },
   {
     quote:
-      "The client history feature is everything. I know exactly what colour formula we used six months ago without digging through notes.",
+      "The client history feature is everything. I know exactly what color formula we used six months ago without digging through notes.",
     author: "Nadia O.",
-    salon: "The Mane Studio, Birmingham",
+    salon: "The Mane Studio, Miami",
   },
 ];
 
@@ -265,7 +265,7 @@ export default function HomePage() {
                     className="text-2xl font-bold mt-1"
                     style={{ color: "var(--ink)" }}
                   >
-                    £1,240
+                    $1,240
                   </div>
                   <div
                     className="text-xs mt-1"

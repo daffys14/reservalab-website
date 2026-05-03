@@ -122,7 +122,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <p className="text-sm font-semibold" style={{ color: "var(--ink)" }}>
-                  Osa — founder
+                  Odefe Enabulele — founder
                 </p>
                 <p className="text-xs mt-0.5" style={{ color: "var(--ink-muted)" }}>
                   Developer. Former salon owner. reservalab customer #1.
