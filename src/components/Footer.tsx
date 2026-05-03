@@ -54,20 +54,13 @@ export default function Footer() {
               Compare
             </p>
             <nav className="flex flex-col gap-2">
-              {[
-                { href: "/compare/square", label: "vs Square" },
-                { href: "/compare/booksy", label: "vs Booksy" },
-                { href: "/compare/glossgenius", label: "vs GlossGenius" },
-              ].map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="text-sm transition-colors"
-                  style={{ color: "var(--ink-muted)" }}
-                >
-                  {label}
-                </Link>
-              ))}
+              <Link
+                href="/compare"
+                className="text-sm transition-colors"
+                style={{ color: "var(--ink-muted)" }}
+              >
+                Compare competitors
+              </Link>
             </nav>
           </div>
 

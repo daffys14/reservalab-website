@@ -4,18 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-const compareLinks = [
-  { href: "/compare/square", label: "vs Square" },
-  { href: "/compare/booksy", label: "vs Booksy" },
-  { href: "/compare/glossgenius", label: "vs GlossGenius" },
-];
-
-
 export default function Nav() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [compareOpen, setCompareOpen] = useState(false);
-  const [mobileCompareOpen, setMobileCompareOpen] = useState(false);
 
   const isComparePage = pathname.startsWith("/compare");
 
@@ -61,68 +52,16 @@ export default function Nav() {
             Pricing
           </Link>
 
-          {/* Compare dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setCompareOpen(true)}
-            onMouseLeave={() => setCompareOpen(false)}
+          {/* Compare */}
+          <Link
+            href="/compare"
+            className="text-sm font-medium transition-colors"
+            style={{
+              color: isComparePage ? "var(--ink)" : "var(--ink-muted)",
+            }}
           >
-            <button
-              className="flex items-center gap-1 text-sm font-medium transition-colors"
-              style={{ color: isComparePage ? "var(--ink)" : "var(--ink-muted)" }}
-              aria-expanded={compareOpen}
-              aria-haspopup="true"
-            >
-              Compare
-              <svg
-                className="w-3.5 h-3.5 transition-transform"
-                style={{ transform: compareOpen ? "rotate(180deg)" : undefined }}
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="4,6 8,10 12,6" />
-              </svg>
-            </button>
-
-            {compareOpen && (
-              <div
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 rounded-xl border overflow-hidden w-44"
-                style={{
-                  backgroundColor: "#111111",
-                  borderColor: "var(--line)",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
-                }}
-              >
-                {compareLinks.map(({ href, label }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="block px-4 py-2.5 text-sm transition-colors"
-                    style={{
-                      color: pathname === href ? "var(--accent)" : "var(--ink-muted)",
-                      backgroundColor: pathname === href ? "rgba(245,166,35,0.06)" : undefined,
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "rgba(255,255,255,0.04)";
-                      (e.currentTarget as HTMLAnchorElement).style.color = "var(--ink)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-                        pathname === href ? "rgba(245,166,35,0.06)" : "";
-                      (e.currentTarget as HTMLAnchorElement).style.color =
-                        pathname === href ? "var(--accent)" : "var(--ink-muted)";
-                    }}
-                  >
-                    {label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+            Compare
+          </Link>
 
           {/* About */}
           <Link
@@ -211,44 +150,15 @@ export default function Nav() {
             Pricing
           </Link>
 
-          {/* Compare — expandable on mobile */}
-          <div>
-            <button
-              className="flex items-center gap-1.5 text-sm font-medium py-2 w-full text-left"
-              style={{ color: isComparePage ? "var(--ink)" : "var(--ink-muted)" }}
-              onClick={() => setMobileCompareOpen((o) => !o)}
-              aria-expanded={mobileCompareOpen}
-            >
-              Compare
-              <svg
-                className="w-3.5 h-3.5 transition-transform"
-                style={{ transform: mobileCompareOpen ? "rotate(180deg)" : undefined }}
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="4,6 8,10 12,6" />
-              </svg>
-            </button>
-            {mobileCompareOpen && (
-              <div className="pl-4 flex flex-col gap-0.5 mb-1">
-                {compareLinks.map(({ href, label }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="text-sm py-1.5"
-                    style={{ color: pathname === href ? "var(--accent)" : "var(--ink-muted)" }}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+          {/* Compare */}
+          <Link
+            href="/compare"
+            className="text-sm font-medium py-2"
+            style={{ color: isComparePage ? "var(--ink)" : "var(--ink-muted)" }}
+            onClick={() => setMenuOpen(false)}
+          >
+            Compare
+          </Link>
 
           <Link
             href="/about"
