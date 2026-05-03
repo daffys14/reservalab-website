@@ -114,7 +114,7 @@ export default function ContactForm() {
               backgroundColor: "var(--bg-card)",
               color: "var(--ink)",
             }}
-            placeholder="Studio Jane, London"
+            placeholder="Luxe Studio, Atlanta"
           />
           {state.fieldErrors?.salonName && (
             <p id="salonName-error" className="mt-1.5 text-xs" style={{ color: "var(--danger)" }}>
@@ -178,7 +178,7 @@ export default function ContactForm() {
             backgroundColor: "var(--bg-card)",
             color: "var(--ink)",
           }}
-          placeholder="+44 7700 900000"
+          placeholder="+1 (555) 000-0000"
         />
       </div>
 
