@@ -19,6 +19,8 @@ const rows: { feature: string; reservalab: string | boolean; glossgenius: string
   { feature: "Offline mode", reservalab: "Full offline sync", glossgenius: "Requires internet" },
   { feature: "Multi-location", reservalab: "Built in", glossgenius: "Higher tier" },
   { feature: "Client data ownership", reservalab: "Full export", glossgenius: "Full export" },
+  { feature: "Free booking page subdomain", reservalab: "yourname.reservalab.com", glossgenius: "Varies" },
+  { feature: "Custom domain for booking page", reservalab: "Included in Standard", glossgenius: "Extra cost" },
 ];
 
 const callouts = [

@@ -19,6 +19,8 @@ const rows: { feature: string; reservalab: string | boolean; booksy: string | bo
   { feature: "iOS-native app", reservalab: "Native SwiftUI", booksy: "Web-wrapped" },
   { feature: "Tap to Pay", reservalab: "Built in", booksy: false },
   { feature: "Offline mode", reservalab: "Full offline sync", booksy: "Requires internet" },
+  { feature: "Free booking page subdomain", reservalab: "yourname.reservalab.com", booksy: "Varies" },
+  { feature: "Custom domain for booking page", reservalab: "Included in Standard", booksy: "Not offered" },
 ];
 
 const callouts = [

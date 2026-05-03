@@ -378,6 +378,151 @@ function PaymentsSummaryMock() {
   );
 }
 
+// ─── Mock: Booking Page Domain ────────────────────────────────────────────────
+
+function BookingPageMock() {
+  return (
+    <div className="flex flex-col gap-4">
+      {/* Browser address bar */}
+      <div
+        className="rounded-2xl border overflow-hidden"
+        style={{ borderColor: "var(--line)", backgroundColor: "var(--bg-card)" }}
+      >
+        <div
+          className="px-5 py-3 border-b flex items-center gap-3"
+          style={{ borderColor: "var(--line)", backgroundColor: "var(--bg-card)" }}
+        >
+          {/* Traffic lights */}
+          <div className="flex items-center gap-1.5">
+            {["#ef4444", "#f59e0b", "#22c55e"].map((c) => (
+              <span
+                key={c}
+                className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                style={{ backgroundColor: c }}
+              />
+            ))}
+          </div>
+          {/* Address bar */}
+          <div
+            className="flex-1 rounded-lg flex items-center gap-2 px-3 py-1.5"
+            style={{ backgroundColor: "rgba(245,166,35,0.06)", border: "1px solid var(--line)" }}
+          >
+            {/* Green lock */}
+            <svg
+              className="w-3.5 h-3.5 flex-shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{ color: "#22c55e" }}
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <span className="text-sm font-medium" style={{ color: "var(--ink)" }}>
+              book.glamstudio.com
+            </span>
+          </div>
+        </div>
+        {/* Simplified booking form card */}
+        <div className="p-5">
+          <div
+            className="rounded-xl border p-5"
+            style={{ borderColor: "var(--line)" }}
+          >
+            <p className="text-sm font-semibold mb-4" style={{ color: "var(--ink)" }}>
+              Book an appointment
+            </p>
+            <div className="flex flex-col gap-3">
+              {/* Client name field */}
+              <div>
+                <div
+                  className="text-xs mb-1.5 font-medium"
+                  style={{ color: "var(--ink-muted)" }}
+                >
+                  Your name
+                </div>
+                <div
+                  className="rounded-lg border px-3 py-2.5 text-sm"
+                  style={{ borderColor: "var(--line)", color: "var(--ink-subtle)" }}
+                >
+                  Sofia R.
+                </div>
+              </div>
+              {/* Service picker */}
+              <div>
+                <div
+                  className="text-xs mb-1.5 font-medium"
+                  style={{ color: "var(--ink-muted)" }}
+                >
+                  Service
+                </div>
+                <div
+                  className="rounded-lg border px-3 py-2.5 text-sm flex items-center justify-between"
+                  style={{ borderColor: "var(--line)", color: "var(--ink)" }}
+                >
+                  <span>Full Head Colour</span>
+                  <svg
+                    className="w-3.5 h-3.5"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ color: "var(--ink-subtle)" }}
+                  >
+                    <polyline points="2,4 6,8 10,4" />
+                  </svg>
+                </div>
+              </div>
+              {/* Date picker */}
+              <div>
+                <div
+                  className="text-xs mb-1.5 font-medium"
+                  style={{ color: "var(--ink-muted)" }}
+                >
+                  Date
+                </div>
+                <div
+                  className="rounded-lg border px-3 py-2.5 text-sm flex items-center justify-between"
+                  style={{ borderColor: "var(--line)", color: "var(--ink)" }}
+                >
+                  <span>Thursday, May 8</span>
+                  <svg
+                    className="w-3.5 h-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ color: "var(--ink-subtle)" }}
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                </div>
+              </div>
+              {/* Book button */}
+              <div
+                className="rounded-lg px-4 py-2.5 text-sm font-semibold text-center mt-1"
+                style={{ backgroundColor: "var(--accent)", color: "#0a0a0a" }}
+              >
+                Confirm booking
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 const sections = [
@@ -446,6 +591,19 @@ const sections = [
     visual: "payments",
     flip: false,
   },
+  {
+    tag: "Online booking",
+    title: "Your booking page. Your brand.",
+    copy: "Every reservalab account gets a free booking page at [yourname].reservalab.com. On Standard, connect your own domain — book.yoursalon.com — and your clients never see our name unless you want them to. SSL included. No hosting fees. No setup required.",
+    highlights: [
+      "Free booking page on every plan — no setup required",
+      "Custom domain included in Standard",
+      "SSL certificate included — always secure",
+      "Your clients book directly with you, not through a marketplace",
+    ],
+    visual: "bookingpage",
+    flip: true,
+  },
 ];
 
 function Visual({ id }: { id: string }) {
@@ -454,6 +612,7 @@ function Visual({ id }: { id: string }) {
   if (id === "client") return <ClientCardMock />;
   if (id === "locations") return <LocationSwitcherMock />;
   if (id === "payments") return <PaymentsSummaryMock />;
+  if (id === "bookingpage") return <BookingPageMock />;
   return null;
 }
 

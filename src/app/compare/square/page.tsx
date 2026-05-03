@@ -20,6 +20,8 @@ const rows: { feature: string; reservalab: string | boolean; square: string | bo
   { feature: "Offline mode", reservalab: "Full offline sync", square: "Requires internet" },
   { feature: "Client data ownership", reservalab: "Full export anytime", square: "Limited" },
   { feature: "Multi-location", reservalab: "Built in", square: "Additional cost" },
+  { feature: "Free booking page subdomain", reservalab: "yourname.reservalab.com", square: "Varies" },
+  { feature: "Custom domain for booking page", reservalab: "Included in Standard", square: "Not offered" },
 ];
 
 const callouts = [

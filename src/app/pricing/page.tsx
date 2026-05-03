@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 };
 
-const features = [
+const foundingFeatures = [
   "Unlimited appointments",
   "Unlimited clients",
   "Tap to Pay on iPhone",
@@ -21,6 +21,20 @@ const features = [
   "Real-time sync across devices",
   "Email support",
   "All future features included",
+  "Your booking page at [yourname].reservalab.com",
+];
+
+const standardFeatures = [
+  "Unlimited appointments",
+  "Unlimited clients",
+  "Tap to Pay on iPhone",
+  "Multi-stylist scheduling",
+  "Client management + history",
+  "Real-time sync across devices",
+  "Email support",
+  "All future features included",
+  "Your booking page at [yourname].reservalab.com",
+  { text: "Custom domain — book.yoursalon.com included", highlight: true },
 ];
 
 const faqs = [
@@ -178,7 +192,7 @@ export default function PricingPage() {
 
               {/* Feature list */}
               <ul className="flex flex-col gap-3 mb-8">
-                {features.map((item) => (
+                {foundingFeatures.map((item) => (
                   <li
                     key={item}
                     className="flex items-start gap-3 text-sm"
@@ -203,6 +217,12 @@ export default function PricingPage() {
                 style={{ color: "var(--ink-subtle)" }}
               >
                 No credit card required to apply.
+              </p>
+              <p
+                className="text-xs text-center mt-4"
+                style={{ color: "var(--ink-subtle)" }}
+              >
+                Want your own domain? Add custom domain for $15/month.
               </p>
             </div>
           </div>
@@ -249,16 +269,40 @@ export default function PricingPage() {
 
               {/* Feature list */}
               <ul className="flex flex-col gap-3 mb-8">
-                {features.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm"
-                    style={{ color: "var(--ink)" }}
-                  >
-                    <CheckIcon />
-                    {item}
-                  </li>
-                ))}
+                {standardFeatures.map((item) => {
+                  const isHighlight = typeof item === "object" && item.highlight;
+                  const text = typeof item === "object" ? item.text : item;
+                  return (
+                    <li
+                      key={text}
+                      className="flex items-start gap-3 text-sm"
+                      style={{ color: isHighlight ? "var(--accent)" : "var(--ink)" }}
+                    >
+                      <span
+                        className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full inline-flex items-center justify-center"
+                        style={{
+                          backgroundColor: isHighlight
+                            ? "rgba(245,166,35,0.25)"
+                            : "rgba(245,166,35,0.15)",
+                          color: "var(--accent)",
+                        }}
+                      >
+                        <svg
+                          className="w-3 h-3"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="2,6 5,9 10,3" />
+                        </svg>
+                      </span>
+                      {isHighlight ? <strong>{text}</strong> : text}
+                    </li>
+                  );
+                })}
               </ul>
 
               {/* CTA — ghost/outline */}
@@ -278,16 +322,26 @@ export default function PricingPage() {
         </div>
 
         {/* Additional locations note */}
-        <p
-          className="text-sm text-center mb-20 px-4"
-          style={{ color: "var(--ink-muted)" }}
-        >
-          Need multiple locations? Add any location for{" "}
-          <span style={{ color: "var(--ink)" }} className="font-semibold">
-            $29/month
-          </span>
-          . Same app, same dashboard, different view.
-        </p>
+        <div className="text-sm text-center mb-20 px-4 flex flex-col gap-2">
+          <p style={{ color: "var(--ink-muted)" }}>
+            Need multiple locations? Add any location for{" "}
+            <span style={{ color: "var(--ink)" }} className="font-semibold">
+              $29/month
+            </span>
+            . Same app, same dashboard, different view.
+          </p>
+          <p style={{ color: "var(--ink-subtle)" }}>
+            All plans include a free{" "}
+            <span className="font-medium" style={{ color: "var(--ink-muted)" }}>
+              [yourname].reservalab.com
+            </span>{" "}
+            booking page. Custom domain (
+            <span className="font-medium" style={{ color: "var(--ink-muted)" }}>
+              book.yoursalon.com
+            </span>
+            ) included in Standard, or add it to any plan for $15/month.
+          </p>
+        </div>
 
         {/* FAQ */}
         <div>
