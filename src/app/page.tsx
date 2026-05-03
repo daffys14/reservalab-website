@@ -616,7 +616,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Section 3: Up and running in minutes ─────────────────────────── */}
-      <section className="px-4 sm:px-6 py-24">
+      <section id="steps" className="px-4 sm:px-6 py-24">
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-14">
             <h2
