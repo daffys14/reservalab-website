@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 };
 
-/** reservalab cells are always a green-check win — never boolean false */
+/** reservalab column cell — always a positive value, never boolean false */
 interface ReservalabCell {
   label: string;
   /** bold renders the label in full ink weight (used for pricing) */
@@ -51,6 +51,13 @@ const rows: Row[] = [
     square: "Card reader required",
     booksy: "—",
     glossgenius: "GeniusPoint reader",
+  },
+  {
+    feature: "Payment processing",
+    reservalab: { label: "Stripe — 2.9% + 30¢" },
+    square: "Square — 2.5% + 0¢",
+    booksy: "Varies by plan",
+    glossgenius: "GeniusPay — 2.6% + 15¢",
   },
   {
     feature: "iOS-native app",
@@ -139,20 +146,17 @@ function NoIcon() {
   );
 }
 
-/** Always renders a green checkmark + positive label — used exclusively for the reservalab column */
+/** Renders the reservalab column value — plain white text, no icon */
 function ReservalabCellValue({ cell }: { cell: ReservalabCell }) {
   return (
-    <span className="flex items-center gap-1.5">
-      <CheckIcon />
-      <span
-        className="text-sm leading-snug"
-        style={{
-          color: "var(--ink)",
-          fontWeight: cell.bold ? 600 : 400,
-        }}
-      >
-        {cell.label}
-      </span>
+    <span
+      className="text-sm leading-snug font-medium"
+      style={{
+        color: "var(--ink)",
+        fontWeight: cell.bold ? 600 : 500,
+      }}
+    >
+      {cell.label}
     </span>
   );
 }
@@ -265,11 +269,12 @@ export default function ComparePage() {
             </div>
 
             {/* Table rows */}
-            <div className="divide-y" style={{ borderColor: "var(--line)" }}>
+            <div>
               {rows.map((row) => (
                 <div
                   key={row.feature}
-                  className="grid grid-cols-[2fr_1.4fr_1fr_1fr_1fr]"
+                  className="grid grid-cols-[2fr_1.4fr_1fr_1fr_1fr] border-b"
+                  style={{ borderColor: "var(--line)" }}
                 >
                   <div
                     className="px-5 py-4 text-sm font-medium"
@@ -277,7 +282,7 @@ export default function ComparePage() {
                   >
                     {row.feature}
                   </div>
-                  {/* reservalab — amber tint, always green checkmark */}
+                  {/* reservalab — amber left border tint */}
                   <div
                     className="px-5 py-4 border-l"
                     style={{
@@ -303,6 +308,13 @@ export default function ComparePage() {
             </div>
           </div>
         </div>
+
+        {/* Stripe footnote */}
+        <p className="text-xs mb-12 max-w-3xl" style={{ color: "var(--ink-muted)" }}>
+          * reservalab uses Stripe for payment processing. A Stripe account is required. Standard
+          Stripe processing rates apply (2.9% + 30¢ per card-present transaction). reservalab does
+          not add a markup.
+        </p>
 
         {/* CTA */}
         <div
