@@ -224,7 +224,7 @@ export default function HomePage() {
                 >
                   Today — 4 appointments
                 </div>
-                {["09:00 Sarah K.", "11:30 Maria L.", "14:00 Priya N.", "16:30 Amelia T."].map(
+                {["9:00 AM Sarah K.", "11:30 AM Maria L.", "2:00 PM Priya N.", "4:30 PM Amelia T."].map(
                   (appt) => (
                     <div
                       key={appt}

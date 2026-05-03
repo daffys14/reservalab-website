@@ -28,10 +28,10 @@ const features = [
     ],
     visual: {
       rows: [
-        { time: "09:00", service: "Cut & Blow Dry", client: "Sarah K.", duration: "60 min" },
-        { time: "10:15", service: "Full Head Colour", client: "Maria L.", duration: "120 min" },
-        { time: "13:00", service: "Balayage", client: "Priya N.", duration: "150 min" },
-        { time: "16:00", service: "Trim", client: "Amelia T.", duration: "30 min" },
+        { time: "9:00 AM", service: "Cut & Blow Dry", client: "Sarah K.", duration: "60 min" },
+        { time: "10:15 AM", service: "Full Head Colour", client: "Maria L.", duration: "120 min" },
+        { time: "1:00 PM", service: "Balayage", client: "Priya N.", duration: "150 min" },
+        { time: "4:00 PM", service: "Trim", client: "Amelia T.", duration: "30 min" },
       ],
     },
   },
@@ -71,7 +71,7 @@ const features = [
       "No external hardware ever",
     ],
     visual: {
-      payment: { amount: "£85.00", method: "Tap to Pay", status: "Approved" },
+      payment: { amount: "$85.00", method: "Tap to Pay", status: "Approved" },
     },
   },
   {
@@ -234,7 +234,7 @@ function FeatureVisual({ feature }: { feature: (typeof features)[number] }) {
           {feature.visual.rows?.map((row) => (
             <div key={row.time} className="px-5 py-4 flex items-center gap-4">
               <span
-                className="text-xs font-mono w-10 flex-shrink-0"
+                className="text-xs font-mono w-16 flex-shrink-0"
                 style={{ color: "var(--ink-muted)" }}
               >
                 {row.time}
