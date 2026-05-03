@@ -713,6 +713,259 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* ── Section 4b: Why reservalab? Differentiators ─────────────────── */}
+      <section className="px-4 sm:px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          {/* Section header */}
+          <div className="text-center mb-14">
+            <h2
+              className="text-3xl sm:text-4xl font-bold tracking-tight mb-4"
+            >
+              <span
+                style={{
+                  backgroundImage: "linear-gradient(135deg, var(--accent) 0%, #ffcf6e 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Built different. On purpose.
+              </span>
+            </h2>
+            <p className="text-base leading-relaxed max-w-2xl mx-auto" style={{ color: "var(--ink-muted)" }}>
+              Every other booking tool was built for the web first, mobile second. We started with the
+              iPhone and worked backwards.
+            </p>
+          </div>
+
+          {/* 2×2 differentiator grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* Card 1 — Tap to Pay on iPhone */}
+            <div
+              className="rounded-2xl p-7 flex flex-col gap-5 transition-transform hover:-translate-y-1"
+              style={{
+                backgroundColor: "#141414",
+                borderLeft: "3px solid var(--accent)",
+                border: "1px solid rgba(245,166,35,0.15)",
+                borderLeftWidth: 3,
+                borderLeftColor: "var(--accent)",
+              }}
+            >
+              {/* Icon */}
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: "rgba(245,166,35,0.1)" }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5 h-5"
+                  style={{ color: "var(--accent)" }}
+                  aria-hidden="true"
+                >
+                  {/* Phone body */}
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                  {/* Credit card symbol on screen */}
+                  <rect x="8" y="8" width="8" height="5" rx="1" />
+                  <line x1="8" y1="11" x2="16" y2="11" />
+                  {/* Home button / indicator */}
+                  <line x1="11" y1="19" x2="13" y2="19" />
+                </svg>
+              </div>
+              <div className="flex flex-col gap-2 flex-1">
+                <h3 className="text-lg font-semibold" style={{ color: "var(--ink)" }}>
+                  The terminal is your iPhone.
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--ink-muted)" }}>
+                  No hardware to buy. No monthly equipment fee. No waiting for a reader to ship. Just
+                  hold the phone up and take payment. Tap to Pay on iPhone is built into the app from
+                  day one &mdash; not an add-on, not a third-party integration.
+                </p>
+              </div>
+              {/* Callout tag */}
+              <span
+                className="self-start text-xs font-medium rounded-full px-3 py-1"
+                style={{ backgroundColor: "rgba(245,166,35,0.1)", color: "var(--accent)" }}
+              >
+                Square requires hardware. We don&apos;t.
+              </span>
+            </div>
+
+            {/* Card 2 — You own your clients */}
+            <div
+              className="rounded-2xl p-7 flex flex-col gap-5 transition-transform hover:-translate-y-1"
+              style={{
+                backgroundColor: "#141414",
+                border: "1px solid rgba(245,166,35,0.15)",
+                borderLeftWidth: 3,
+                borderLeftColor: "var(--accent)",
+              }}
+            >
+              {/* Icon */}
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: "rgba(245,166,35,0.1)" }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5 h-5"
+                  style={{ color: "var(--accent)" }}
+                  aria-hidden="true"
+                >
+                  {/* Lock body */}
+                  <rect x="5" y="11" width="14" height="10" rx="2" ry="2" />
+                  {/* Lock shackle */}
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                  {/* Person silhouette inside lock */}
+                  <circle cx="12" cy="15" r="1.5" />
+                  <path d="M10 19a2 2 0 0 1 4 0" />
+                </svg>
+              </div>
+              <div className="flex flex-col gap-2 flex-1">
+                <h3 className="text-lg font-semibold" style={{ color: "var(--ink)" }}>
+                  Your clients stay yours.
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--ink-muted)" }}>
+                  Booksy built a marketplace where clients can leave you for the salon next door. We
+                  don&apos;t have a marketplace. Your client list, visit history, and contact info belong
+                  to your salon &mdash; full export anytime, zero lock-in.
+                </p>
+              </div>
+              {/* Callout tag */}
+              <span
+                className="self-start text-xs font-medium rounded-full px-3 py-1"
+                style={{ backgroundColor: "rgba(245,166,35,0.1)", color: "var(--accent)" }}
+              >
+                Booksy owns the relationship. We don&apos;t.
+              </span>
+            </div>
+
+            {/* Card 3 — Works without wifi */}
+            <div
+              className="rounded-2xl p-7 flex flex-col gap-5 transition-transform hover:-translate-y-1"
+              style={{
+                backgroundColor: "#141414",
+                border: "1px solid rgba(245,166,35,0.15)",
+                borderLeftWidth: 3,
+                borderLeftColor: "var(--accent)",
+              }}
+            >
+              {/* Icon — wifi with slash */}
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: "rgba(245,166,35,0.1)" }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5 h-5"
+                  style={{ color: "var(--accent)" }}
+                  aria-hidden="true"
+                >
+                  {/* Wifi arcs (outer two, clipped to suggest partial) */}
+                  <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                  {/* Dot */}
+                  <circle cx="12" cy="20" r="1" fill="currentColor" />
+                  {/* Slash through */}
+                  <line x1="2" y1="2" x2="22" y2="22" />
+                </svg>
+              </div>
+              <div className="flex flex-col gap-2 flex-1">
+                <h3 className="text-lg font-semibold" style={{ color: "var(--ink)" }}>
+                  Busy Saturday? Spotty wifi? Doesn&apos;t matter.
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--ink-muted)" }}>
+                  Every competitor app freezes when the wifi goes down. Reservalab is built on a sync
+                  engine that runs locally on your iPhone. Appointments, clients, payments &mdash;
+                  everything keeps working. Changes sync the moment you&apos;re back online.
+                </p>
+              </div>
+              {/* Callout tag */}
+              <span
+                className="self-start text-xs font-medium rounded-full px-3 py-1"
+                style={{ backgroundColor: "rgba(245,166,35,0.1)", color: "var(--accent)" }}
+              >
+                Web apps break. Native apps don&apos;t.
+              </span>
+            </div>
+
+            {/* Card 4 — Built for growth */}
+            <div
+              className="rounded-2xl p-7 flex flex-col gap-5 transition-transform hover:-translate-y-1"
+              style={{
+                backgroundColor: "#141414",
+                border: "1px solid rgba(245,166,35,0.15)",
+                borderLeftWidth: 3,
+                borderLeftColor: "var(--accent)",
+              }}
+            >
+              {/* Icon — stacked buildings / location with plus */}
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: "rgba(245,166,35,0.1)" }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5 h-5"
+                  style={{ color: "var(--accent)" }}
+                  aria-hidden="true"
+                >
+                  {/* Building 1 (back) */}
+                  <rect x="2" y="7" width="8" height="14" rx="1" />
+                  {/* Building 2 (front/taller) */}
+                  <rect x="10" y="3" width="9" height="18" rx="1" />
+                  {/* Plus on building 2 */}
+                  <line x1="14.5" y1="8" x2="14.5" y2="13" />
+                  <line x1="12" y1="10.5" x2="17" y2="10.5" />
+                  {/* Windows on building 1 */}
+                  <rect x="4" y="10" width="2" height="2" rx="0.5" />
+                  <rect x="4" y="14" width="2" height="2" rx="0.5" />
+                </svg>
+              </div>
+              <div className="flex flex-col gap-2 flex-1">
+                <h3 className="text-lg font-semibold" style={{ color: "var(--ink)" }}>
+                  Open location two without starting over.
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--ink-muted)" }}>
+                  GlossGenius and theCut are built for solo operators. When you&apos;re ready for a
+                  second chair, a second stylist, or a second location, reservalab handles it &mdash;
+                  same app, same dashboard, same reports. Multi-location is in the foundation, not a
+                  $200/month enterprise tier.
+                </p>
+              </div>
+              {/* Callout tag */}
+              <span
+                className="self-start text-xs font-medium rounded-full px-3 py-1"
+                style={{ backgroundColor: "rgba(245,166,35,0.1)", color: "var(--accent)" }}
+              >
+                Most tools can&apos;t scale with you. We can.
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── Section 5: Feature highlights ───────────────────────────────── */}
       <section className="px-4 sm:px-6 py-24">
         <div className="mx-auto max-w-6xl flex flex-col gap-28">
