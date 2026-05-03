@@ -12,83 +12,91 @@ export const metadata: Metadata = {
   },
 };
 
-type CellVal = string | boolean;
+/** reservalab cells are always a green-check win — never boolean false */
+interface ReservalabCell {
+  label: string;
+  /** bold renders the label in full ink weight (used for pricing) */
+  bold?: boolean;
+}
+
+/** Competitor cells keep the legacy boolean logic */
+type CompetitorVal = string | boolean;
 
 interface Row {
   feature: string;
-  reservalab: CellVal;
-  square: CellVal;
-  booksy: CellVal;
-  glossgenius: CellVal;
+  reservalab: ReservalabCell;
+  square: CompetitorVal;
+  booksy: CompetitorVal;
+  glossgenius: CompetitorVal;
 }
 
 const rows: Row[] = [
   {
     feature: "Monthly fee",
-    reservalab: "$29 founding / $79 standard",
+    reservalab: { label: "$29 founding / $79 standard", bold: true },
     square: "$29–$69/mo",
     booksy: "$29.99/mo",
     glossgenius: "$24–$48/mo",
   },
   {
     feature: "Tap to Pay on iPhone",
-    reservalab: "Built in",
+    reservalab: { label: "Built in", bold: true },
     square: "Requires hardware",
     booksy: false,
     glossgenius: false,
   },
   {
-    feature: "Hardware required",
-    reservalab: false,
-    square: "Card reader",
-    booksy: false,
-    glossgenius: false,
+    feature: "Hardware needed?",
+    reservalab: { label: "None — use your iPhone" },
+    square: "Card reader required",
+    booksy: "—",
+    glossgenius: "GeniusPoint reader",
   },
   {
     feature: "iOS-native app",
-    reservalab: "SwiftUI",
+    reservalab: { label: "SwiftUI" },
     square: "Web-wrapped",
     booksy: "Web-wrapped",
     glossgenius: "Web-wrapped",
   },
   {
     feature: "Offline mode",
-    reservalab: "Full sync",
+    reservalab: { label: "Full sync" },
     square: false,
     booksy: false,
     glossgenius: false,
   },
   {
     feature: "Client data ownership",
-    reservalab: "Full export",
+    reservalab: { label: "Full export" },
     square: "Limited",
     booksy: "Booksy owns it",
     glossgenius: "Full export",
   },
   {
     feature: "Custom domain",
-    reservalab: "Included in Standard",
+    reservalab: { label: "Included in Standard" },
     square: "Not offered",
     booksy: "Not offered",
     glossgenius: "Extra cost",
   },
   {
     feature: "Multi-location",
-    reservalab: "Built in ($29/location)",
+    reservalab: { label: "Built in ($29/location)" },
     square: "Extra cost",
     booksy: "Extra cost",
     glossgenius: "Higher tier",
   },
   {
     feature: "Free booking page subdomain",
-    reservalab: "yourname.reservalab.com",
+    reservalab: { label: "yourname.reservalab.com" },
     square: false,
     booksy: false,
     glossgenius: false,
   },
 ];
 
-function YesIcon() {
+function CheckIcon() {
   return (
     <span
       className="inline-flex w-6 h-6 rounded-full items-center justify-center flex-shrink-0"
@@ -131,11 +139,30 @@ function NoIcon() {
   );
 }
 
-function CellValue({ val, accent }: { val: CellVal; accent?: boolean }) {
+/** Always renders a green checkmark + positive label — used exclusively for the reservalab column */
+function ReservalabCellValue({ cell }: { cell: ReservalabCell }) {
+  return (
+    <span className="flex items-center gap-1.5">
+      <CheckIcon />
+      <span
+        className="text-sm leading-snug"
+        style={{
+          color: "var(--ink)",
+          fontWeight: cell.bold ? 600 : 400,
+        }}
+      >
+        {cell.label}
+      </span>
+    </span>
+  );
+}
+
+/** Renders competitor cells: boolean true → green check, boolean false → red X, string → muted text */
+function CompetitorCellValue({ val }: { val: CompetitorVal }) {
   if (val === true)
     return (
       <span className="flex items-center gap-1.5">
-        <YesIcon />
+        <CheckIcon />
         <span className="text-sm" style={{ color: "var(--ink)" }}>
           Yes
         </span>
@@ -150,11 +177,15 @@ function CellValue({ val, accent }: { val: CellVal; accent?: boolean }) {
         </span>
       </span>
     );
+  /* neutral dash or plain text */
+  if (val === "—")
+    return (
+      <span className="text-sm" style={{ color: "var(--ink-subtle, var(--ink-muted))" }}>
+        —
+      </span>
+    );
   return (
-    <span
-      className="text-sm leading-snug"
-      style={{ color: accent ? "var(--ink)" : "var(--ink-muted)" }}
-    >
+    <span className="text-sm leading-snug" style={{ color: "var(--ink-muted)" }}>
       {val}
     </span>
   );
@@ -246,7 +277,7 @@ export default function ComparePage() {
                   >
                     {row.feature}
                   </div>
-                  {/* reservalab — amber tint */}
+                  {/* reservalab — amber tint, always green checkmark */}
                   <div
                     className="px-5 py-4 border-l"
                     style={{
@@ -256,16 +287,16 @@ export default function ComparePage() {
                       borderLeftColor: "var(--accent)",
                     }}
                   >
-                    <CellValue val={row.reservalab} accent />
+                    <ReservalabCellValue cell={row.reservalab} />
                   </div>
                   <div className="px-5 py-4 border-l" style={{ borderColor: "var(--line)" }}>
-                    <CellValue val={row.square} />
+                    <CompetitorCellValue val={row.square} />
                   </div>
                   <div className="px-5 py-4 border-l" style={{ borderColor: "var(--line)" }}>
-                    <CellValue val={row.booksy} />
+                    <CompetitorCellValue val={row.booksy} />
                   </div>
                   <div className="px-5 py-4 border-l" style={{ borderColor: "var(--line)" }}>
-                    <CellValue val={row.glossgenius} />
+                    <CompetitorCellValue val={row.glossgenius} />
                   </div>
                 </div>
               ))}
