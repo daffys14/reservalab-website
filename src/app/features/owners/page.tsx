@@ -378,6 +378,70 @@ function PaymentsSummaryMock() {
   );
 }
 
+// ─── Mock: Notification Stack ────────────────────────────────────────────────
+
+function NotificationStackMock() {
+  const notifications = [
+    {
+      icon: "🗓",
+      title: "Appointment confirmed",
+      body: "Tomorrow at 2:00 PM with Marcus",
+      from: "Luxe Studio",
+    },
+    {
+      icon: "⏰",
+      title: "Reminder",
+      body: "Your appointment is in 24 hours",
+      from: "Luxe Studio",
+    },
+    {
+      icon: "✅",
+      title: "Thanks for visiting!",
+      body: "We hope to see you soon",
+      from: "Luxe Studio",
+    },
+  ];
+
+  return (
+    <div className="relative flex flex-col" style={{ gap: 0, paddingBottom: "1.5rem" }}>
+      {notifications.map((n, i) => (
+        <div
+          key={n.title}
+          className="rounded-2xl border flex items-start gap-4 px-5 py-4"
+          style={{
+            backgroundColor: "#141210",
+            borderColor: "var(--line)",
+            borderLeftWidth: 3,
+            borderLeftColor: "var(--accent)",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.45)",
+            marginTop: i === 0 ? 0 : "-0.75rem",
+            marginLeft: i === 1 ? "1rem" : i === 2 ? "2rem" : 0,
+            marginRight: i === 1 ? "1rem" : i === 2 ? "2rem" : 0,
+            zIndex: 3 - i,
+            position: "relative",
+            opacity: i === 0 ? 1 : i === 1 ? 0.85 : 0.7,
+          }}
+        >
+          <span className="text-xl flex-shrink-0 mt-0.5">{n.icon}</span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-2 mb-0.5">
+              <p className="text-sm font-semibold truncate" style={{ color: "var(--ink)" }}>
+                {n.title}
+              </p>
+              <span className="text-xs flex-shrink-0" style={{ color: "var(--ink-subtle)" }}>
+                {n.from}
+              </span>
+            </div>
+            <p className="text-xs" style={{ color: "var(--ink-muted)" }}>
+              {n.body}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ─── Mock: Booking Page Domain ────────────────────────────────────────────────
 
 function BookingPageMock() {
@@ -592,6 +656,19 @@ const sections = [
     flip: false,
   },
   {
+    tag: "Notifications",
+    title: "Your clients always know what's next.",
+    copy: "Every booking triggers an automatic confirmation email to your client. A reminder goes out 24 hours before. After the appointment, a thank-you follows. All automatic, all branded with your salon name. No extra setup.",
+    highlights: [
+      "Confirmation email sent the moment a booking is made",
+      "24-hour reminder so clients never forget",
+      "Thank-you message after every appointment",
+      "Branded with your salon name — not ours",
+    ],
+    visual: "notifications",
+    flip: false,
+  },
+  {
     tag: "Online booking",
     title: "Your booking page. Your brand.",
     copy: "Every reservalab account gets a free booking page at [yourname].reservalab.com. On Standard, connect your own domain — book.yoursalon.com — and your clients never see our name unless you want them to. SSL included. No hosting fees. No setup required.",
@@ -612,6 +689,7 @@ function Visual({ id }: { id: string }) {
   if (id === "client") return <ClientCardMock />;
   if (id === "locations") return <LocationSwitcherMock />;
   if (id === "payments") return <PaymentsSummaryMock />;
+  if (id === "notifications") return <NotificationStackMock />;
   if (id === "bookingpage") return <BookingPageMock />;
   return null;
 }

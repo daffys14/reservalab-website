@@ -12,25 +12,29 @@ export const metadata: Metadata = {
   },
 };
 
-const foundingFeatures = [
+const foundingFeatures: (string | { text: string; badge: string })[] = [
   "Unlimited appointments",
   "Unlimited clients",
   "Tap to Pay on iPhone",
   "Multi-stylist scheduling",
   "Client management + history",
   "Real-time sync across devices",
+  "Automated email notifications",
+  { text: "Push notifications for staff", badge: "Coming soon" },
   "Email support",
   "All future features included",
   "Your booking page at [yourname].reservalab.com",
 ];
 
-const standardFeatures = [
+const standardFeatures: (string | { text: string; highlight?: boolean })[] = [
   "Unlimited appointments",
   "Unlimited clients",
   "Tap to Pay on iPhone",
   "Multi-stylist scheduling",
   "Client management + history",
   "Real-time sync across devices",
+  "Automated email notifications",
+  "Push notifications for staff",
   "Email support",
   "All future features included",
   "Your booking page at [yourname].reservalab.com",
@@ -57,6 +61,10 @@ const faqs = [
   {
     q: "Can I add more locations later?",
     a: "Yes. Each additional location is $29/month, added instantly from your dashboard.",
+  },
+  {
+    q: "What notifications does reservalab send?",
+    a: "Clients receive automatic email confirmations when they book, a reminder 24 hours before their appointment, and a thank-you after. Staff and owners receive push notifications for new bookings, payments, and cancellations. SMS notifications are available as an add-on.",
   },
 ];
 
@@ -192,16 +200,35 @@ export default function PricingPage() {
 
               {/* Feature list */}
               <ul className="flex flex-col gap-3 mb-8">
-                {foundingFeatures.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm"
-                    style={{ color: "var(--ink)" }}
-                  >
-                    <CheckIcon />
-                    {item}
-                  </li>
-                ))}
+                {foundingFeatures.map((item) => {
+                  const hasBadge = typeof item === "object" && "badge" in item;
+                  const text = typeof item === "object" ? item.text : item;
+                  const badge = hasBadge && typeof item === "object" && "badge" in item ? item.badge : null;
+                  return (
+                    <li
+                      key={text}
+                      className="flex items-start gap-3 text-sm"
+                      style={{ color: "var(--ink)" }}
+                    >
+                      <CheckIcon />
+                      <span className="flex items-center gap-2 flex-wrap">
+                        {text}
+                        {badge && (
+                          <span
+                            className="text-xs rounded-full px-2 py-0.5 font-medium"
+                            style={{
+                              backgroundColor: "rgba(255,255,255,0.06)",
+                              color: "var(--ink-subtle)",
+                              border: "1px solid var(--line)",
+                            }}
+                          >
+                            {badge}
+                          </span>
+                        )}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
 
               {/* CTA */}

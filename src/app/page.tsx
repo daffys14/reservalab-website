@@ -327,6 +327,68 @@ function ClientMock() {
   );
 }
 
+function NotificationsMock() {
+  const notifications = [
+    {
+      icon: "🗓",
+      title: "Appointment confirmed",
+      body: "Tomorrow at 2:00 PM with Marcus",
+      from: "Luxe Studio",
+    },
+    {
+      icon: "⏰",
+      title: "Reminder",
+      body: "Your appointment is in 24 hours",
+      from: "Luxe Studio",
+    },
+    {
+      icon: "✅",
+      title: "Thanks for visiting!",
+      body: "We hope to see you soon",
+      from: "Luxe Studio",
+    },
+  ];
+
+  return (
+    <div className="relative flex flex-col" style={{ gap: 0, paddingBottom: "1.5rem" }}>
+      {notifications.map((n, i) => (
+        <div
+          key={n.title}
+          className="rounded-2xl border flex items-start gap-4 px-5 py-4"
+          style={{
+            backgroundColor: "#141210",
+            borderColor: "var(--line)",
+            borderLeftWidth: 3,
+            borderLeftColor: "var(--accent)",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.45)",
+            marginTop: i === 0 ? 0 : "-0.75rem",
+            marginLeft: i === 1 ? "1rem" : i === 2 ? "2rem" : 0,
+            marginRight: i === 1 ? "1rem" : i === 2 ? "2rem" : 0,
+            zIndex: 3 - i,
+            position: "relative",
+            opacity: i === 0 ? 1 : i === 1 ? 0.85 : 0.7,
+          }}
+        >
+          <span className="text-xl flex-shrink-0 mt-0.5">{n.icon}</span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-2 mb-0.5">
+              <p className="text-sm font-semibold truncate" style={{ color: "var(--ink)" }}>
+                {n.title}
+              </p>
+              <span className="text-xs flex-shrink-0" style={{ color: "var(--ink-subtle)" }}>
+                {n.from}
+              </span>
+            </div>
+            <p className="text-xs" style={{ color: "var(--ink-muted)" }}>
+              {n.body}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ─── Stars helper ─────────────────────────────────────────────────────────────
 
 function Stars() {
@@ -1043,12 +1105,46 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Feature 3 — Client management */}
+          {/* Feature 3 — Notifications */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <ClientMock />
+              <NotificationsMock />
             </div>
             <div className="order-1 lg:order-2">
+              <span
+                className="text-xs font-semibold tracking-widest uppercase mb-3 block"
+                style={{ color: "var(--accent)" }}
+              >
+                Notifications
+              </span>
+              <h2
+                className="text-3xl sm:text-4xl font-bold tracking-tight mb-5"
+                style={{ color: "var(--ink)" }}
+              >
+                Clients stay informed automatically.
+              </h2>
+              <p className="text-base leading-relaxed mb-7" style={{ color: "var(--ink-muted)" }}>
+                Confirmation, reminder, thank-you &mdash; sent without you lifting
+                a finger. Your clients look forward to hearing from you. You look
+                professional without trying.
+              </p>
+              <Link
+                href="/features/owners#notifications"
+                className="text-sm font-semibold inline-flex items-center gap-1"
+                style={{ color: "var(--accent)" }}
+              >
+                Learn more
+                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="3" y1="8" x2="13" y2="8" />
+                  <polyline points="9,4 13,8 9,12" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+
+          {/* Feature 4 — Client management */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
               <span
                 className="text-xs font-semibold tracking-widest uppercase mb-3 block"
                 style={{ color: "var(--accent)" }}
@@ -1077,6 +1173,9 @@ export default function HomePage() {
                   <polyline points="9,4 13,8 9,12" />
                 </svg>
               </Link>
+            </div>
+            <div>
+              <ClientMock />
             </div>
           </div>
 
